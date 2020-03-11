@@ -46,5 +46,6 @@ public abstract class MilestoneSource {
    */
   public abstract SpongeFactory.Mode getPoWMode();
 
+  public abstract List<Transaction> createMilestone(String trunk, String branch, int index, int mwm, byte[] threshold);
   public abstract List<Transaction> createMilestone(String trunk, String branch, int index, int mwm);
 }

@@ -38,6 +38,7 @@ def maven_jars():
         sha1 = "15d7790ee311d961379c51b00aba12d5967cb7ea",
     )
 
+
     # com.squareup.retrofit2:converter-gson:jar:2.4.0
     native.maven_jar(
         name = "com_google_code_gson_gson",

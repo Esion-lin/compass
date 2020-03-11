@@ -49,6 +49,15 @@ public class CoordinatorConfiguration extends BaseConfiguration {
   @Parameter(names = "-inception", description = "Only use this if you know what you're doing.")
   public boolean inception = false;
 
+  @Parameter(names = "-Mulitiple", description = "when use Mulitiple Coordinator")
+  public boolean Mulitiple = false;
+  
+  @Parameter(names = "-hotstuff_port", description = "Select BFT node port.")
+  public int hotstuff_port = 10600;
+
+  @Parameter(names = "-hotstuff_recv_port", description = "Select BFT node port.")
+  public int hotstuff_recv_port = 10080;
+  
   @Parameter(names = "-index", description = "Manually feed the current latest solid milestone index of IRI." +
           " So the next milestone will be index +1")
   public Integer index;
