@@ -242,12 +242,7 @@ public class Coordinator {
       //assume that we will be calling gtta
       boolean isReferencingLastMilestone = false;
       String trunk, branch;
-      GetNodeInfoResponse nodeInfoResponse = getNodeInfoWithRetries();
-      System.out.println("nodeInfoResponse.getLatestMilestone():" + nodeInfoResponse.getLatestMilestone());
-      System.out.println("state.latestMilestoneHash:" + state.latestMilestoneHash);
-      System.out.println("nodeInfoResponse.getLatestMilestoneIndex():" + String.valueOf(nodeInfoResponse.getLatestMilestoneIndex()));
-      System.out.println("state.latestMilestoneIndex:" + String.valueOf(state.latestMilestoneIndex));
-      
+      GetNodeInfoResponse nodeInfoResponse = getNodeInfoWithRetries(); 
       if (!config.bootstrap) {
         state.latestMilestoneHash = nodeInfoResponse.getLatestMilestone();
         state.latestMilestoneIndex = nodeInfoResponse.getLatestMilestoneIndex() + 1;
@@ -388,9 +383,16 @@ public class Coordinator {
     TODO:call the hotstuff to continue
     */
     if(config.Mulitiple){
-      if(!hotstuff.call_send("127.0.0.1", config.hotstuff_port, trunk.substring(0, 32), hotstuff.getIdx())){
-        return false;
+      if(config.hotstuff_remote){
+        if(!hotstuff.call_send(config.hotstuff_host, config.hotstuff_port, trunk.substring(0, 32), hotstuff.getIdx())){
+          return false;
+        } 
+      }else{
+        if(!hotstuff.call_send("127.0.0.1", config.hotstuff_port, trunk.substring(0, 32), hotstuff.getIdx())){
+          return false;
+        } 
       }
+      
     }
       
     /*wait threshold sig*/
